@@ -17,7 +17,8 @@ h1 {
 #random {
     width: 20%;
     margin-left: 40%;
-    margin-top: 5%
+    margin-top: 5%;
+    color:#2a2d33;
 }
 
 #query {

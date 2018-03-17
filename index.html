@@ -3,18 +3,30 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="style.css"/>
     <script>
-        
+        $(document).ready(function(){
+           $("#submit").on("click", function(){
+               var searchArr = document.getElementById('search-text').value.split(' ');
+               var searchText = searchArr.join("%20");
+               document.getElementById('main-container').innerHTML = "<h1 style='margin-top: 0%; text-align: left'>Groupstack Wikipedia Search App</h1>";
+               document.getElementById('main-container').innerHTML += "<div id='main-form' class='input-group'><input style='margin-left: 0%;' id='search-text' type='text' class='form-control' id='query'/><span class='input-group-btn'><button id='submit' class='btn btn-primary'>Submit</button></span></div>";
+               $.getJSON("https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&utf8=1&srsearch="+searchText, function(json){
+                   for (var i=0;i<10;i++){
+                       document.getElementById('main-container').innerHTML += "<div class='well'>"+json.query.search[i].title+"</div>";
+                   }
+               });
+           }); 
+        });
     </script>
 </head>
 <body>
-    <div class="container-fluid">
+    <div id="main-container" class="container-fluid">
         <h1>Groupstack Wikipedia Search App</h1>
         <div id="main-form" class="input-group">
-            <input type="text" class="form-control" id="query"/>
+            <input id="search-text" type="text" class="form-control" id="query"/>
             <span class="input-group-btn">
-                <button class="btn btn-primary">Submit</button>
+                <button id="submit" class="btn btn-primary">Submit</button>
             </span>
         </div>
-        <button id="random" class="btn btn-block"><b>Take me anywhere!</b></button>
+        <a id="random" href="https://en.wikipedia.org/wiki/Special:Random" class="btn btn-default btn-block"><b>Take me anywhere!</b></a>
     </div>
 </body>
