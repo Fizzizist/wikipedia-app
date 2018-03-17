@@ -1,0 +1,26 @@
+body {
+    background-color: #38404c;
+}
+
+h1 {
+    color: white;
+    text-align: center;
+    margin-top: 25%;
+    margin-bottom: 2%;
+}
+
+#main-form {
+    width: 50%;
+    margin-left: 25%;
+}
+
+#random {
+    width: 20%;
+    margin-left: 40%;
+    margin-top: 5%
+}
+
+#query {
+    background-color: gray;
+    color: white;
+}
