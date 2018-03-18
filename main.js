@@ -6,6 +6,7 @@ $(document).ready(function(){
        document.getElementById('title').style.marginTop = "0%";
        document.getElementById('main-form').style.marginBottom = "2%";
        document.getElementById('random').style.marginTop = "2%";
+       document.getElementById('footer').style.position = "relative";
        $.getJSON("https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&utf8=1&srsearch="+searchText, function(json){
            var queryURL = "";
            var pageIDs = [];

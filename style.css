@@ -11,6 +11,16 @@ body {
     background-color: #38404c;
 }
 
+#footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
 h1 {
     color: white;
     text-align: center;
