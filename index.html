@@ -2,30 +2,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="style.css"/>
-    <script>
-        $(document).ready(function(){
-           $("#submit").click(function(){
-               var searchArr = document.getElementById('search-text').value.split(' ');
-               var searchText = searchArr.join("%20");
-               document.getElementById('title').style.marginTop = "0%";
-               document.getElementById('main-form').style.marginBottom = "2%";
-               $.getJSON("https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&list=search&utf8=1&srsearch="+searchText, function(json){
-                   var queryURL = "";
-                   var pageIDs = [];
-                   for (var i=0;i<10;i++){
-                       pageIDs.push(json.query.search[i].pageid);
-                   }
-                   var pageIDURL = pageIDs.join("%7C");
-                   $.getJSON("https://en.wikipedia.org/w/api.php?action=query&prop=info&origin=*&pageids="+pageIDURL+"&inprop=url&format=json", function(jsonInner){
-                        document.getElementById('results').innerHTML = "<a href="+jsonInner.query.pages[json.query.search[0].pageid].fullurl+"><div class='well'><b>"+json.query.search[0].title+"</b><br>"+json.query.search[0].snippet+"</div></a>";
-                        for (var i=1;i<10;i++){
-                            document.getElementById('results').innerHTML += "<a href="+jsonInner.query.pages[json.query.search[i].pageid].fullurl+"><div class='well'><b>"+json.query.search[i].title+"</b><br>"+json.query.search[i].snippet+"</div></a>";
-                        }
-                   });
-               });
-           }); 
-        });
-    </script>
+    <script src="main.js"></script>
 </head>
 <body>
     <div id="main-container" class="container-fluid">
@@ -38,6 +15,7 @@
         </div>
         <div id="results" class="container-fluid">
         </div>
+        <button id="load-more" class="btn btn-block btn-primary">Load more</button>
         <a id="random" href="https://en.wikipedia.org/wiki/Special:Random" class="btn btn-default btn-block"><b>Take me anywhere!</b></a>
     </div>
 </body>
